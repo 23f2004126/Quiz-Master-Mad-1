@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Quiz Details{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Quiz Details</h1>
+    <div class="card mt-4">
+        <div class="card-header">
+            <h2>{{ quiz.title }}</h2>
+        </div>
+        <div class="card-body">
+            <p><strong>ID:</strong> {{ quiz.id }}</p>
+            <p><strong>Chapter:</strong> {{ quiz.chapter.name }}</p>
+            <p><strong>Date:</strong> {{ quiz.date }}</p>
+            <p><strong>Duration:</strong> {{ quiz.duration }} minutes</p>
+        </div>
+    </div>
+</div>
+<a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
+{% endblock %}

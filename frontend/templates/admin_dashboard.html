@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<h1>Admin Dashboard</h1>
+
+<nav class="dashboard-nav">
+    <ul>
+        <li><a href="{{ url_for('admin_users') }}">Manage Users</a></li>
+        <li><a href="{{ url_for('admin_subjects') }}">Manage Subjects</a></li>
+        <li><a href="{{ url_for('admin_chapters') }}">Manage Chapters</a></li>
+        <li><a href="{{ url_for('admin_quizzes') }}">Manage Quizzes</a></li>
+        <li><a href="{{ url_for('admin_questions') }}">Manage Questions</a></li>
+    </ul>
+</nav>
+
+<section class="actions">
+    <h2>Quick Actions</h2>
+    <div class="action-links">
+        <a href="{{ url_for('add_subject') }}">Add Subject</a>
+        <a href="{{ url_for('add_chapter') }}">Add Chapter</a>
+        <a href="{{ url_for('add_quiz') }}">Add Quiz</a>
+        <a href="{{ url_for('add_question') }}">Add Question</a>
+    </div>
+</section>
+
+<a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+
+<style>
+    .dashboard-nav {
+        margin: 20px 0;
+    }
+    .dashboard-nav ul {
+        list-style: none;
+        padding: 0;
+    }
+    .dashboard-nav ul li {
+        display: inline;
+        margin-right: 15px;
+    }
+    .dashboard-nav a {
+        text-decoration: none;
+        font-weight: bold;
+        color: #007BFF;
+    }
+    .dashboard-nav a:hover {
+        color: #0056b3;
+    }
+    .actions {
+        margin-top: 30px;
+    }
+    .action-links a {
+        display: inline-block;
+        margin: 10px 15px 10px 0;
+        text-decoration: none;
+        padding: 8px 12px;
+        background-color: #007BFF;
+        color: white;
+        border-radius: 5px;
+    }
+    .action-links a:hover {
+        background-color: #0056b3;
+    }
+    .logout-button {
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+        color: white;
+        background-color: #dc3545;
+        padding: 10px 15px;
+        border-radius: 5px;
+    }
+    .logout-button:hover {
+        background-color: #c82333;
+    }
+</style>
+{% endblock %}

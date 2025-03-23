@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Chapter Details{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Chapter Details</h1>
+    <div class="card mt-4">
+        <div class="card-header">
+            <h2>{{ chapter.name }}</h2>
+        </div>
+        <div class="card-body">
+            <p><strong>ID:</strong> {{ chapter.id }}</p>
+            <p><strong>Subject:</strong> {{ chapter.subject.name }}</p>
+            <p><strong>Description:</strong> {{ chapter.description }}</p>
+        </div>
+    </div>
+</div>
+<a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
+{% endblock %}

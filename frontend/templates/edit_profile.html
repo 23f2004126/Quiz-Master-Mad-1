@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Edit Profile{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Edit Profile</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="alert alert-{{ messages[0][0] }}" role="alert">
+        {{ messages[0][1] }}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('edit_profile') }}" method="post" class="mt-4">
+        <div class="form-group">
+            <label for="full_name">Full Name</label>
+            <input type="text" class="form-control" id="full_name" name="full_name" value="{{ user.full_name }}" required>
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="qualification">Qualification</label>
+            <input type="text" class="form-control" id="qualification" name="qualification" value="{{ user.qualification }}">
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="dob">Date of Birth</label>
+            <input type="date" class="form-control" id="dob" name="dob" value="{{ user.dob }}">
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-4">Save Changes</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Take Quiz{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Quiz: {{ quiz.title }}</h1>
+    <p class="text-center">Duration: {{ quiz.duration }} minutes</p>
+
+    <form action="{{ url_for('submit_quiz', quiz_id=quiz.id) }}" method="post">
+        {% for question in quiz.questions %}
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>Question {{ loop.index }}:</h5>
+            </div>
+            <div class="card-body">
+                <p>{{ question.statement }}</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="q{{ question.id }}_1" value="1" required>
+                    <label class="form-check-label" for="q{{ question.id }}_1">{{ question.option1 }}</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="q{{ question.id }}_2" value="2">
+                    <label class="form-check-label" for="q{{ question.id }}_2">{{ question.option2 }}</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="q{{ question.id }}_3" value="3">
+                    <label class="form-check-label" for="q{{ question.id }}_3">{{ question.option3 }}</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="q{{ question.id }}_4" value="4">
+                    <label class="form-check-label" for="q{{ question.id }}_4">{{ question.option4 }}</label>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-success btn-block">Submit Quiz</button>
+    </form>
+</div>
+{% endblock %}

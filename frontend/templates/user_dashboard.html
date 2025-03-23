@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}User Dashboard{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Welcome, {{ user.full_name }}!</h1>
+    <p class="text-center">Here's your activity overview.</p>
+
+    <!-- Available Quizzes -->
+    <div class="mt-5">
+        <h2>Available Quizzes</h2>
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Quiz Title</th>
+                    <th>Chapter</th>
+                    <th>Subject</th>
+                    <th>Duration (mins)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for quiz in available_quizzes %}
+                <tr>
+                    <td>{{ quiz.title }}</td>
+                    <td>{{ quiz.chapter.name }}</td>
+                    <td>{{ quiz.chapter.subject.name }}</td>
+                    <td>{{ quiz.duration }}</td>
+                    <td>
+                        <a href="{{ url_for('take_quiz', quiz_id=quiz.id) }}" class="btn btn-primary btn-sm">Take Quiz</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Completed Quizzes -->
+    <div class="mt-5">
+        <h2>Your Completed Quizzes</h2>
+        {% if completed_quizzes %}
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Quiz Title</th>
+                    <th>Score</th>
+                    <th>Date Completed</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for score in completed_quizzes %}
+                <tr>
+                    <td>{{ score.quiz.title }}</td>
+                    <td>{{ score.score }}</td>
+                    <td>{{ score.date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>You haven't completed any quizzes yet. Start taking quizzes now!</p>
+        {% endif %}
+    </div>
+
+    <!-- Profile Section -->
+    <div class="mt-5">
+        <h2>Your Profile</h2>
+        <p><strong>Full Name:</strong> {{ user.full_name }}</p>
+        <p><strong>Email:</strong> {{ user.username }}</p>
+        <p><strong>Qualification:</strong> {{ user.qualification }}</p>
+        <a href="{{ url_for('edit_profile') }}" class="btn btn-warning btn-sm">Edit Profile</a>
+    </div>
+</div>
+{% endblock %}

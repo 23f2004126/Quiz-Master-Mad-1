@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">{{ title }}</h1>
+    <table class="table table-bordered table-striped table-hover mt-4">
+        <thead class="table-dark">
+            <tr>
+                {% for header in headers %}
+                <th>{{ header }}</th>
+                {% endfor %}
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for chapter in entities %}
+            <tr>
+                <td>{{ chapter.id }}</td>
+                <td>{{ chapter.name }}</td>
+                <td>{{ chapter.subject.name }}</td>
+                <td>
+                    <a href="{{ url_for('view_chapter_details', chapter_id=chapter.id) }}" class="btn btn-info btn-sm">View Details</a>
+                    <form action="{{ url_for('delete_chapter', chapter_id=chapter.id) }}" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this chapter?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
+{% endblock %}
